@@ -10,13 +10,17 @@ void ExploreStructuredInputChecks(InputStruct inputStruct){
     if (inputStruct.c == "Attacker") {
         if (insecureEncrypt(inputStruct.a) == 0x4e9e91e6677cfff3L) {
             if (insecureEncrypt(inputStruct.b) == 0x4f8b9fb34431d9d3L) {
-                trigger_double_free();
+                // FIX: Remove or replace trigger_double_free() with safe handling
+                // trigger_double_free();
+                // Optionally, log an error or handle the condition safely
+                // e.g., logError("Attempted double free condition detected");
             }
         }
     }
 
     return;
 }
+// FIX EXPLANATION: The call to trigger_double_free() is removed to prevent the double free vulnerability. If special handling is needed for this condition, it should be implemented in a way that does not free memory multiple times. Always ensure that memory is freed exactly once, and pointers are set to nullptr after being freed to avoid use-after-free or double free conditions.
 
 void ExploreSlowInputsChecks(int a, int b){
     if (a == 48664131) {
